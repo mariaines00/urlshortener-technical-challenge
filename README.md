@@ -14,3 +14,20 @@ It sounds more complex but breaking it down into the above steps should help you
 
 Keep in mind that other developers are going to take over the app soon. They want to be able to be productive soon and they know where you live. 😁
 
+----
+----
+## Running the project
+
+0. have docker and docker-compose installed
+1. clone the repo
+2. navigate to the directory containing the docker-compose.yml file
+3. run ``docker-compose up -d --build`` or ``./start.sh``
+4. Use [postman](https://www.getpostman.com/) or an equivalent software to make use of the endpoints like explained below
+## Endpoints
+
+- POST _localhost:3000_/
+  - ...
+- GET _localhost:3000_/
+  - ...
+### Extra considerations and decisions
+...
