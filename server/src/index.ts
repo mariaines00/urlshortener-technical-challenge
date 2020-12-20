@@ -1,7 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
 
 import redisClient from './configs/redis';
+
 import shortenRoutes from './routes/shorten';
+import expandRoutes from './routes/expand';
+
 
 process.on('uncaughtException', e => {
   console.log(e);
@@ -23,6 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/shorten', shortenRoutes);
+app.use('/expand/:id', expandRoutes);
 
 //error handler middleware TODO: proper error handling :D
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
