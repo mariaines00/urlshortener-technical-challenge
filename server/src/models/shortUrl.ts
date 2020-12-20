@@ -1,6 +1,7 @@
-// Adapted from: https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener#742047
+import redisClient from './../configs/redis';
 
-const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_', BASE = ALPHABET.length;
+// Solution for encode/decode strings adapted from: https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener#742047
+const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ', BASE = ALPHABET.length;
 
 /**
  * takes an ID and turns it into a short string
@@ -26,4 +27,24 @@ export function decode(str: string): number {
         num *= BASE + ALPHABET.indexOf(str.charAt(i));
     }
     return num;
+}
+
+/**
+ * Saves the new entry in the database
+ * 
+ * @param id encoded short string 
+ * @param origin origin long url
+ */
+export function register(id: string, origin: string) {
+    redisClient.set(id, origin, function(_, res) {
+       console.info(`REDIS: New entry ${id}`);
+    });
+}
+
+/**
+ * TODO:
+ * @param id 
+ */
+export function fetch(id: string) {
+    redisClient.hmget(id);
 }
