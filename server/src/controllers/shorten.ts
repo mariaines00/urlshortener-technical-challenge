@@ -22,6 +22,8 @@ export const shortenURL: RequestHandler = (req: Request, res: Response, next: Ne
 
     register(id, url);
 
-    res.sendStatus(200);
+    const resp = `${req.protocol}://${req.get('host')}/${id}`;
+
+    res.status(200).send(resp);
     return;
 }
