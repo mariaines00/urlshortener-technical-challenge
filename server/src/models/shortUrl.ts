@@ -1,6 +1,6 @@
-import redisClient from './../configs/redis';
+import redisClient, { getAsync } from './../configs/redis';
 
-// Solution for encode/decode strings adapted from: https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener#742047
+// Solution for encode strings adapted from: https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener#742047
 const ALPHABET = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ', BASE = ALPHABET.length;
 
 /**
@@ -17,34 +17,22 @@ export function encode(id: number): string {
 }
 
 /**
- * takes a short string and turns it into an ID
- * 
- * @param str 
- */
-export function decode(str: string): number {
-    let num: number = 0;
-    for (let i = 0, len = str.length; i < len; i++) {
-        num *= BASE + ALPHABET.indexOf(str.charAt(i));
-    }
-    return num;
-}
-
-/**
  * Saves the new entry in the database
  * 
  * @param id encoded short string 
  * @param origin origin long url
  */
-export function register(id: string, origin: string) {
+export function register(id: string, origin: string): void {
     redisClient.set(id, origin, function(_, res) {
        console.info(`REDIS: New entry ${id}`);
     });
 }
 
 /**
- * TODO:
+ * This is not ideal, but I don't feel like wrapping it in a promise :D
+ * 
  * @param id 
  */
-export function fetch(id: string) {
-    redisClient.hmget(id);
+export async function fetch(id: string): Promise<string | null> {
+    return getAsync(id);   
 }

@@ -3,6 +3,6 @@ import { expandURL } from '../controllers/expand';
 
 const router = Router();
 
-router.get('/', expandURL);
+router.get('/:short', expandURL);
 
 export default router;

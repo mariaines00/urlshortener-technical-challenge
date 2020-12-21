@@ -26,7 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/shorten', shortenRoutes);
-app.use('/expand/:id', expandRoutes);
+app.use('/expand', expandRoutes);
 
 //error handler middleware TODO: proper error handling :D
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
