@@ -16,18 +16,35 @@ Keep in mind that other developers are going to take over the app soon. They wan
 
 ----
 ----
+## Technologies
+
+Written in `TypeScript` and `Node.js`
+Using `redis` to store the shortened URLs and their original long urls and `nginx` to forward routes
+
 ## Running the project
 
 0. have docker and docker-compose installed
 1. clone the repo
-2. navigate to the directory containing the docker-compose.yml file
-3. run ``docker-compose up -d --build`` or ``./start.sh``
+2. navigate to the new directory (containing the docker-compose.yml file)
+3. run ``./start.sh``
+3. or ``docker-compose up -d --build``
 4. Use [postman](https://www.getpostman.com/) or an equivalent software to make use of the endpoints like explained below
+
+
 ## Endpoints
 
-- POST _localhost:3000_/
-  - ...
-- GET _localhost:3000_/
-  - ...
+- POST _localhost/shorten?url={url}_
+  - Using query params to pass the desired url
+
+- GET _localhost/{id}_
+  - Redirects using a temporary redirect
+
 ### Extra considerations and decisions
-...
+- I used nginx to match the /{id} to an internal api call instead of having the direct access
+  - I tought using it would help with implementing using the base of tier.app
+     - But I can only think of making that work using host files
+- Could have gone with mongo from the start instead of redis and then maintaing the stats would be fairly easy
+ - This way in order not to over complicate it I chose not to track the accesses
+ - The 302 redirect would help in keeping track of them and still take advantage of browser-side caching
+- Chose not to use a logger like winston to keep things simple and instead use only the console
+- There's no testing, but the code is well structured and organized so it's fairly easy to add some usefull tests soon
