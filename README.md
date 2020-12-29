@@ -1,4 +1,4 @@
-# TIER Mobility backend coding challenge
+# Backend technical coding challenge
 
  this challenge we're asking you to spice up your life with your very own URL Shortener!
 
@@ -38,13 +38,3 @@ Using `redis` to store the shortened URLs and their original long urls and `ngin
 
 - GET _localhost/{id}_
   - Redirects using a temporary redirect
-
-### Extra considerations and decisions
-- I used nginx to match the /{id} to an internal api call instead of having the direct access
-  - I tought using it would help with implementing using the base of tier.app
-     - But I can only think of making that work using host files
-- Could have gone with mongo from the start instead of redis and then maintaing the stats would be fairly easy
- - This way in order not to over complicate it I chose not to track the accesses
- - The 302 redirect would help in keeping track of them and still take advantage of browser-side caching
-- Chose not to use a logger like winston to keep things simple and instead use only the console
-- There's no testing, but the code is well structured and organized so it's fairly easy to add some usefull tests soon
