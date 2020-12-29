@@ -1,7 +1,7 @@
 {
-  "name": "tier-urlshortener-coding-challenge",
+  "name": "urlshortener-technical-challenge",
   "version": "1.0.0",
-  "description": "Backend technical challenge for TIER Mobility",
+  "description": "Backend technical coding challenge",
   "main": "index.js",
   "author": "mariaines00",
   "scripts": {
