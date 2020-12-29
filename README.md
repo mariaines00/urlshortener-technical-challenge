@@ -1,4 +1,4 @@
-# TIER Mobility backend coding challenge
+# Backend technical coding challenge
 
  this challenge we're asking you to spice up your life with your very own URL Shortener!
 
@@ -13,4 +13,3 @@ Bonus: track the visits in a second DB table for stats.
 It sounds more complex but breaking it down into the above steps should help you tackle the problem more effectively. Don’t worry if you don’t finish everything.
 
 Keep in mind that other developers are going to take over the app soon. They want to be able to be productive soon and they know where you live. 😁
-
